@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+// import "./App.css";
+import {React, useState, useEffect} from "react";
+import {getArgonautes} from "./api/axios";
+import "./style/main.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [argonautes, setArgonautes] = useState([]);
+
+	useEffect(() => {
+		getArgonautes().then((res) => {
+			setArgonautes(res.data);
+		});
+	}, []);
+
+	const argonautesList = argonautes.map((argonaute) => {
+		return <tr> {argonaute.name}</tr>;
+	});
+	return (
+		<div className="App">
+			<h1>Bienvenu</h1>
+
+			<table>
+				<thead>
+					<tr>Argonautes:</tr>
+				</thead>
+				<tbody>
+					<tr>{argonautesList}</tr>
+				</tbody>
+			</table>
+		</div>
+	);
 }
 
 export default App;
