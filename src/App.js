@@ -7,7 +7,7 @@ function App() {
 	const [argonautes, setArgonautes] = useState([]);
 	const [argonauteInput, setArgonauteInput] = useState("");
 	const [serverResponse, setServerResponse] = useState("");
-	const [argonauteList, setArgonauteList] = useState([]);
+	// const [argonauteList, setArgonauteList] = useState([]);
 
 	useEffect(() => {
 		getArgonautes().then((res) => {
@@ -31,15 +31,27 @@ function App() {
 		});
 	};
 
+	const handleSupression = async (argonauteId) => {
+		const data = {
+			argonauteId: argonauteId,
+		};
+
+		deleteArgonautes(data).then((res) => {
+			setServerResponse(res.data);
+		});
+	};
+
 	const argonautesList = argonautes.map((argonaute) => {
+		let argonauteId = argonaute._id;
+
 		return (
 			<tr
-				key={argonaute._id}
+				key={argonauteId}
 				className=" border border-solid text-center"
 			>
 				<td>{argonaute.name}</td>
 				<td>
-					<button>Suppr</button>
+					<button onClick={() => handleSupression(argonauteId)}>Suppr</button>
 				</td>
 			</tr>
 		);
@@ -62,12 +74,13 @@ function App() {
 					<button className="border border-black"> go !</button>
 				</form>
 			</div>
-			<p>
-				{serverResponse === "cette argonaute existe déjà !"
+			<p className="serverResponseMessage">
+				{/* {serverResponse === "cette argonaute existe déjà !"
 					? "l'Argonaute existe déjà !"
 					: serverResponse === ""
 					? ""
-					: "Argonaute Crée !"}
+					: "Argonaute Crée !"} */}
+				{serverResponse}
 			</p>
 			<div className="  tableContainer flex justify-center mx-auto  ">
 				<div className="flex flex-col">

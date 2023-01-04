@@ -14,5 +14,6 @@ export const addArgonautes = async ({argonauteName}) => {
 };
 
 export const deleteArgonautes = async ({argonauteId}) => {
-	return apiBaseUrl.post("/deleteArgonaute", {argonauteId});
+	console.log(argonauteId);
+	return apiBaseUrl.delete(`/deleteArgonaute/${argonauteId}`);
 };
