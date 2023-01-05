@@ -2,6 +2,8 @@
 import {React, useState, useEffect} from "react";
 import {getArgonautes, addArgonautes, deleteArgonautes} from "./api/axios";
 import "./style/main.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleXmark} from "@fortawesome/free-solid-svg-icons";
 
 function App() {
 	const [argonautes, setArgonautes] = useState([]);
@@ -51,7 +53,12 @@ function App() {
 			>
 				<td>{argonaute.name}</td>
 				<td>
-					<button onClick={() => handleSupression(argonauteId)}>Suppr</button>
+					<button
+						className="suppressionBtn"
+						onClick={() => handleSupression(argonauteId)}
+					>
+						<FontAwesomeIcon icon={faCircleXmark} />
+					</button>
 				</td>
 			</tr>
 		);
@@ -88,7 +95,7 @@ function App() {
 						<div className="border-b border-gray-200 shadow">
 							<table>
 								<thead className="bg-gray-50">
-									<th className="px-52 py-2 text-xs text-gray-500">
+									<th className="px-52 py-2 text-base text-gray-500">
 										Argonautes:
 									</th>
 								</thead>

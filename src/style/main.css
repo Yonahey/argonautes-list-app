@@ -20,7 +20,7 @@ body {
 	font-family: 'roboto';
 	max-width: 100%;
 	max-height: 100%;
-    margin: 0.5rem;
+    margin: 1rem;
     text-align: center;
 }
 
@@ -49,5 +49,7 @@ margin-bottom: 3rem;
    margin-top:  2rem;
 }
 
-
+/* .suppressionBtn{
+    color: white;
+} */
 
